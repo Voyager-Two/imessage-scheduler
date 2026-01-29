@@ -212,16 +212,6 @@ export default function Scheduler() {
             <div className={styles.headerActions}>
               <button
                 type="button"
-                className={styles.clearQueueButton}
-                onClick={handleClearQueue}
-                disabled={isClearing || queuedCount === 0}
-                title="Cancel all queued messages"
-              >
-                <Iconify icon="solar:close-circle-linear" width={18} />
-                {isClearing ? 'Cancelling...' : 'Cancel Queue'}
-              </button>
-              <button
-                type="button"
                 className={styles.processButton}
                 onClick={handleProcessQueue}
                 disabled={isProcessing || queuedCount === 0}
@@ -231,7 +221,17 @@ export default function Scheduler() {
                   icon={isProcessing ? 'solar:refresh-linear' : 'solar:play-bold'}
                   width={18}
                 />
-                {isProcessing ? 'Processing...' : 'Process Queue'}
+                {isProcessing ? 'Processing...' : 'Process queue'}
+              </button>
+              <button
+                type="button"
+                className={styles.clearQueueButton}
+                onClick={handleClearQueue}
+                disabled={isClearing || queuedCount === 0}
+                title="Cancel all queued messages"
+              >
+                <Iconify icon="solar:close-circle-linear" width={18} />
+                {isClearing ? 'Cancelling...' : 'Cancel queue'}
               </button>
               <button
                 type="button"

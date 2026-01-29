@@ -85,15 +85,18 @@
 }
 
 .clearQueueButton {
-  background: white;
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  color: #ef4444;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-weight: 500;
 }
 
 .clearQueueButton:hover:not(:disabled) {
-  background: rgba(239, 68, 68, 0.05);
-  border-color: rgba(239, 68, 68, 0.4);
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #ef4444;
   transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .clearQueueButton:disabled {
