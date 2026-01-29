@@ -251,7 +251,7 @@ export default function Scheduler() {
           {/* Form Card */}
           <div className={styles.formCard}>
             <div className={styles.inputGroup}>
-              <label className={styles.inputLabel}>Phone Number</label>
+              <label className={styles.inputLabel}>Phone number</label>
               <input
                 type="tel"
                 value={form.phoneNumber}
