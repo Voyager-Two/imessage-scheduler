@@ -72,7 +72,7 @@ demo-scheduler/
   - FIFO queue processing (oldest first)
   - Configurable rate limiting (messages per hour)
   - Persistent JSON storage
-  - Status tracking (QUEUED → ACCEPTED → SENT → DELIVERED)
+  - Status tracking (QUEUED → ACCEPTED → SENT)
 
 ### 3. Gateway (iMessage Automation)
 - **Location**: `gateway/`
@@ -223,7 +223,7 @@ crontab -e
 Messages progress through these statuses:
 
 ```
-QUEUED → ACCEPTED → SENT → (DELIVERED) → (RECEIVED)
+QUEUED → ACCEPTED → SENT
   ↓         ↓         ↓
 FAILED ← FAILED ← FAILED
 ```
