@@ -231,8 +231,8 @@ FAILED ← FAILED ← FAILED
 - **QUEUED**: Waiting in queue
 - **ACCEPTED**: Being processed by queue processor
 - **SENT**: Successfully sent via gateway
-- **DELIVERED**: Delivered to recipient (future feature)
 - **FAILED**: Error occurred (check error message)
+- **DELIVERED / RECEIVED**: Not supported with current architecture / AppleScript
 
 > **Note:** With the current AppleScript gateway, only QUEUED → ACCEPTED → SENT (and FAILED/CANCELLED) are set automatically. DELIVERED and RECEIVED are part of the iMessage protocol but are not exposed by the standard Messages.app AppleScript interface, so they cannot be detected or set by this gateway.
 
