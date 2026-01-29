@@ -206,7 +206,7 @@ export default function Scheduler() {
               <div className={styles.logoIcon}>
                 <Iconify icon="solar:chat-round-call-bold" width={24} />
               </div>
-              <span className={styles.logoText}>Scheduler</span>
+              <span className={styles.logoText}>iMessage Scheduler</span>
             </div>
 
             <div className={styles.headerActions}>
@@ -239,7 +239,6 @@ export default function Scheduler() {
                 onClick={() => setShowSettings(true)}
               >
                 <Iconify icon="solar:settings-linear" width={18} />
-                Settings
               </button>
             </div>
           </header>
