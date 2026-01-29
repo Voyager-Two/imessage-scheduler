@@ -1,0 +1,680 @@
+/* iMessage Scheduler - Soft Blue Theme */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #e8f4fc 0%, #d4e8f5 50%, #c5dff0 100%);
+  padding: 40px 24px;
+}
+
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #4F7BF7 0%, #6C63FF 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(79, 123, 247, 0.3);
+}
+
+.logoText {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e3a5f;
+  letter-spacing: -0.5px;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+}
+
+.processButton,
+.clearQueueButton,
+.settingsButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid rgba(79, 123, 247, 0.2);
+  border-radius: 10px;
+  color: #4F7BF7;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.processButton {
+  background: linear-gradient(135deg, #4F7BF7 0%, #6C63FF 100%);
+  color: white;
+  border: none;
+}
+
+.processButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3d63d9 0%, #5548e6 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 123, 247, 0.3);
+}
+
+.processButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.clearQueueButton {
+  background: white;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.clearQueueButton:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.4);
+  transform: translateY(-1px);
+}
+
+.clearQueueButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.settingsButton:hover {
+  background: #f8faff;
+  border-color: rgba(79, 123, 247, 0.4);
+  transform: translateY(-1px);
+}
+
+.processMessageAlert {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e3a5f;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #4F7BF7;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Card */
+.formCard {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  margin-bottom: 32px;
+}
+
+.inputGroup {
+  margin-bottom: 24px;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin-bottom: 10px;
+}
+
+.textInput {
+  width: 100%;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #1e3a5f;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.textInput::placeholder {
+  color: #94a3b8;
+}
+
+.textInput:focus {
+  outline: none;
+  border-color: #4F7BF7;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(79, 123, 247, 0.1);
+}
+
+.textArea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.scheduleButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #4F7BF7 0%, #6C63FF 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(79, 123, 247, 0.35);
+}
+
+.scheduleButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 123, 247, 0.45);
+}
+
+.scheduleButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.scheduleButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Messages Section */
+.messagesSection {
+  margin-top: 8px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e3a5f;
+}
+
+.sectionDot {
+  width: 6px;
+  height: 6px;
+  background: #4F7BF7;
+  border-radius: 50%;
+}
+
+.messageCount {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.messagesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Message Card */
+.messageCard {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.messageCard:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.messageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.phoneInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phoneIcon {
+  width: 36px;
+  height: 36px;
+  background: rgba(79, 123, 247, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4F7BF7;
+}
+
+.phoneNumber {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e3a5f;
+}
+
+.messageActions {
+  display: flex;
+  gap: 4px;
+}
+
+.actionButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.actionButton.danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.messageContent {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  padding-left: 46px;
+}
+
+.messageFooter {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-left: 46px;
+  gap: 12px;
+}
+
+.messageTimeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.messageTime {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.timeLabel {
+  font-weight: 600;
+  color: #64748b;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.queuePosition {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: rgba(79, 123, 247, 0.1);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4F7BF7;
+  border: 1px solid rgba(79, 123, 247, 0.2);
+}
+
+/* Empty State */
+.emptyState {
+  background: white;
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  border: 2px dashed #e2e8f0;
+}
+
+.emptyIcon {
+  width: 64px;
+  height: 64px;
+  background: rgba(79, 123, 247, 0.08);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: #4F7BF7;
+}
+
+.emptyTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin-bottom: 6px;
+}
+
+.emptyText {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Settings Modal */
+.settingsOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.settingsModal {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  margin: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.settingsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.settingsTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.closeButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: #f1f5f9;
+  color: #1e3a5f;
+}
+
+.settingsGroup {
+  margin-bottom: 24px;
+}
+
+.settingsLabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin-bottom: 8px;
+}
+
+.settingsDescription {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.numberInput {
+  width: 100%;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: #1e3a5f;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.numberInput:focus {
+  outline: none;
+  border-color: #4F7BF7;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(79, 123, 247, 0.1);
+}
+
+.settingsActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.settingsSaveButton {
+  flex: 1;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #4F7BF7 0%, #6C63FF 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settingsSaveButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 123, 247, 0.3);
+}
+
+.settingsCancelButton {
+  padding: 12px 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settingsCancelButton:hover {
+  background: #f1f5f9;
+  color: #1e3a5f;
+}
+
+/* Dashboard Stats - Removed, now integrated in tabs */
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tab:hover {
+  color: #1e3a5f;
+}
+
+.tab.active {
+  background: white;
+  color: #1e3a5f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.tabCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.tab.active .tabCount {
+  background: #e8f4fc;
+  color: #4F7BF7;
+}
+
+.queuedBadge {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: #3b82f6 !important;
+}
+
+.sentBadge {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #22c55e !important;
+}
+
+.failedBadge {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .formCard {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .headerActions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .clearQueueButton,
+  .processButton,
+  .settingsButton {
+    flex: 1;
+    justify-content: center;
+    min-width: 140px;
+  }
+
+  .statsBar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .messageContent {
+    padding-left: 0;
+    margin-top: 4px;
+  }
+
+  .messageFooter {
+    padding-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .messageTimeInfo {
+    width: 100%;
+  }
+}
+

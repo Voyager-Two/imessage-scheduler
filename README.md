@@ -348,7 +348,7 @@ Messages and configuration are stored in JSON files in the `data/` directory:
 
 ## 🚀 Production Considerations
 
-This system can be extended for production use:
+- More proper phone number formatting w/ a library and international coverage
 - Replace JSON storage with PostgreSQL/MongoDB
 - Add authentication and authorization
 - Deploy frontend to Vercel

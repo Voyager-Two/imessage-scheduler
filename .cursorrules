@@ -1,0 +1,9 @@
+This is a demo project.
+
+Our focus is great user experience, while not compromising performance and simplicity.
+
+- Using Mantine UI
+- Using Next.js v15 (latest)
+- Using Redux w/ Toolkit and w/ RTK Query
+- For icons use common/UI/iconify, prefer solar and heroicons
+
