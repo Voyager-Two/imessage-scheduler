@@ -2,7 +2,7 @@
 
 A fullstack message scheduling application with real iMessage integration using AppleScript. This monorepo contains three separate components as required: Frontend UI, Backend API & Queue Processor, and iMessage Gateway.
 
-<img width="2000" height="1736" alt="image" src="https://github.com/user-attachments/assets/0d23fbbc-edd4-4185-b4b8-6c991b0b74fd" />
+<img width="2020" height="1730" alt="image" src="https://github.com/user-attachments/assets/e5efccdf-7c0a-4cc0-ada1-1125461b8f4c" />
 
 ## AI usage notice
 I've used AI extensively via Cursor editor. The code patterns and style are based on my personal taste and are based on my many years of experience both professionally and based on projects. AI needs good guidance from an experienced engineer, otherwise it can use bad patterns without complaining. So in essence, AI is only good (in scale) as good as the engineer guiding it. Without good guidance and prompting, AI-generated code can become very hard to maintain and scale.
