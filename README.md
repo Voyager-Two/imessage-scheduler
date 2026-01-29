@@ -56,7 +56,7 @@ demo-scheduler/
 ### 1. Frontend (Scheduling UI)
 - **Location**: `src/features/Scheduler/`
 - **Tech**: Next.js 15, React 19, Redux Toolkit, CSS Modules
-- **Purpose**: Beautiful web UI for scheduling messages and monitoring queue
+- **Purpose**: Web UI for scheduling messages and monitoring queue
 - **Features**:
   - Schedule message form (phone + message)
   - Real-time dashboard with statistics
@@ -102,13 +102,6 @@ demo-scheduler/
 - **Messages.app** signed in with Apple ID and iMessage enabled
 
 ## 🚀 Quick Start
-
-### Prerequisites
-
-- **macOS** (required for iMessage functionality)
-- **Node.js** 22.x or higher
-- **Yarn** 4.7.0 or higher
-- **Messages.app** signed in with Apple ID
 
 ### Installation
 
@@ -331,36 +324,7 @@ GATEWAY_PORT=3001
 
 The queue enforces your "messages per hour" setting. Wait for the specified interval before the next message is processed.
 
-## Development
-
-### Type Checking
-
-```bash
-yarn typecheck
-```
-
-### Linting
-
-```bash
-yarn lint
-```
-
-### Code Formatting
-
-```bash
-yarn prettier:check
-yarn prettier:write
-```
-
 ## Architecture Notes
-
-### Message Status Flow
-
-```
-QUEUED → ACCEPTED → SENT → (DELIVERED) → (RECEIVED)
-   ↓         ↓         ↓
-FAILED ← FAILED ← FAILED
-```
 
 ### Queue Processing Logic
 
