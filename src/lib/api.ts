@@ -35,6 +35,16 @@ export const schedulerApi = {
     return response.json();
   },
 
+  async updateMessageStatus(id: string, status: string, error?: string) {
+    const response = await fetch(`${API_BASE}/messages/status?id=${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status, error }),
+    });
+    if (!response.ok) throw new Error('Failed to update message status');
+    return response.json();
+  },
+
   // Configuration
   async getConfig() {
     const response = await fetch(`${API_BASE}/config`);

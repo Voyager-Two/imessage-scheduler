@@ -125,7 +125,7 @@ export default function Scheduler() {
       return;
     }
 
-    if (!confirm(`Clear ${queuedCount} queued message${queuedCount > 1 ? 's' : ''}?`)) {
+    if (!confirm(`Cancel ${queuedCount} queued message${queuedCount > 1 ? 's' : ''}?`)) {
       return;
     }
 
@@ -133,8 +133,10 @@ export default function Scheduler() {
     try {
       const queuedIds = messages.filter((m) => m.status === 'QUEUED').map((m) => m.id);
 
-      // Delete all queued messages
-      await Promise.all(queuedIds.map((id) => schedulerApi.deleteMessage(id)));
+      // Mark all queued messages as CANCELLED
+      await Promise.all(
+        queuedIds.map((id) => schedulerApi.updateMessageStatus(id, 'CANCELLED'))
+      );
 
       // Refresh messages
       const messagesRes = await schedulerApi.getMessages();
@@ -142,7 +144,7 @@ export default function Scheduler() {
         dispatch(syncMessages(messagesRes.messages));
       }
 
-      setProcessMessage(`✅ Cleared ${queuedCount} message${queuedCount > 1 ? 's' : ''} from queue`);
+      setProcessMessage(`✅ Cancelled ${queuedCount} message${queuedCount > 1 ? 's' : ''}`);
       setTimeout(() => setProcessMessage(null), 5000);
     } catch (error) {
       console.error('Error clearing queue:', error);
@@ -159,7 +161,9 @@ export default function Scheduler() {
     .length;
   const sentCount = messages.filter((m) => ['SENT', 'DELIVERED', 'RECEIVED'].includes(m.status))
     .length;
-  const failedCount = messages.filter((m) => m.status === 'FAILED').length;
+  const failedCount = messages.filter(
+    (m) => m.status === 'FAILED' || m.status === 'CANCELLED'
+  ).length;
 
   // Filter messages based on active tab
   const filteredMessages = messages.filter((m) => {
@@ -169,7 +173,7 @@ export default function Scheduler() {
       case 'sent':
         return ['SENT', 'DELIVERED', 'RECEIVED'].includes(m.status);
       case 'failed':
-        return m.status === 'FAILED';
+        return m.status === 'FAILED' || m.status === 'CANCELLED';
       default:
         return true;
     }
@@ -211,16 +215,17 @@ export default function Scheduler() {
                 className={styles.clearQueueButton}
                 onClick={handleClearQueue}
                 disabled={isClearing || queuedCount === 0}
-                title="Clear all queued messages"
+                title="Cancel all queued messages"
               >
-                <Iconify icon="solar:trash-bin-minimalistic-linear" width={18} />
-                {isClearing ? 'Clearing...' : 'Clear Queue'}
+                <Iconify icon="solar:close-circle-linear" width={18} />
+                {isClearing ? 'Cancelling...' : 'Cancel Queue'}
               </button>
               <button
                 type="button"
                 className={styles.processButton}
                 onClick={handleProcessQueue}
-                disabled={isProcessing}
+                disabled={isProcessing || queuedCount === 0}
+                title={queuedCount === 0 ? 'No messages in queue' : 'Process next message'}
               >
                 <Iconify
                   icon={isProcessing ? 'solar:refresh-linear' : 'solar:play-bold'}

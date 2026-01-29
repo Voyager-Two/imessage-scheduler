@@ -64,7 +64,11 @@ export function MessageCard({ message, queuePosition }: MessageCardProps) {
             <div className={styles.messageTime}>
               <Iconify icon="solar:clock-circle-linear" width={14} />
               <span className={styles.timeLabel}>
-                {message.status === 'SENT' || message.status === 'DELIVERED' || message.status === 'RECEIVED' ? 'Sent:' : 'Updated:'}
+                {message.status === 'SENT' || message.status === 'DELIVERED' || message.status === 'RECEIVED'
+                  ? 'Sent:'
+                  : message.status === 'CANCELLED'
+                  ? 'Cancelled:'
+                  : 'Updated:'}
               </span>
               <span>{dayjs(message.updatedAt).format('MMM D, h:mm A')}</span>
             </div>

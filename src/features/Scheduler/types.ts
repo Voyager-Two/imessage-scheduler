@@ -1,5 +1,5 @@
 // Message Status Types
-export type MessageStatus = 'QUEUED' | 'ACCEPTED' | 'SENT' | 'DELIVERED' | 'RECEIVED' | 'FAILED';
+export type MessageStatus = 'QUEUED' | 'ACCEPTED' | 'SENT' | 'DELIVERED' | 'RECEIVED' | 'FAILED' | 'CANCELLED';
 
 // Scheduled Message
 export interface ScheduledMessage {
@@ -65,6 +65,7 @@ export const statusColors: Record<MessageStatus, { bg: string; text: string; lab
   DELIVERED: { bg: 'rgba(34, 197, 94, 0.15)', text: '#16a34a', label: 'Delivered' },
   RECEIVED: { bg: 'rgba(20, 184, 166, 0.1)', text: '#14b8a6', label: 'Received' },
   FAILED: { bg: 'rgba(239, 68, 68, 0.1)', text: '#ef4444', label: 'Failed' },
+  CANCELLED: { bg: 'rgba(148, 163, 184, 0.1)', text: '#64748b', label: 'Cancelled' },
 };
 
 // Format phone number for display
