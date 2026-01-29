@@ -34,14 +34,15 @@ demo-scheduler/
 │       └── api.ts                #    - Frontend API client
 │
 ├── gateway/                      # (3) iMESSAGE AUTOMATION
-│   ├── server.ts                 # → Express server
+│   ├── server.ts                 # → Express server (port 3001)
 │   ├── imessage.ts               # → AppleScript integration
+│   ├── processor.ts              # → Queue processor (node-cron)
 │   ├── package.json              # → Separate dependencies
-│   └── yarn.lock                 # → Independent project
-│
-├── scripts/                      # Development & setup scripts
-│   ├── setup.sh
-│   └── test.sh
+│   ├── yarn.lock                 # → Independent project
+│   ├── .env.example              # → Environment template
+│   └── scripts/                  # → Setup & test scripts
+│       ├── setup.sh
+│       └── test.sh
 │
 └── data/                         # Auto-generated storage
     ├── messages.json             # Queued messages
@@ -73,13 +74,15 @@ demo-scheduler/
 
 ### 3. Gateway (iMessage Automation)
 - **Location**: `gateway/`
-- **Tech**: Express.js, AppleScript, macOS Messages.app
-- **Purpose**: Send actual iMessages via AppleScript automation
+- **Tech**: Express.js, AppleScript, node-cron, macOS Messages.app
+- **Purpose**: Send actual iMessages + Automated queue processing
 - **Features**:
+  - **Gateway Server** (`server.ts`) - HTTP API for sending iMessages
+  - **Queue Processor** (`processor.ts`) - Automated cron job
   - Real iMessage sending through Messages.app
+  - Automatic queue processing every minute
   - Health checks and status monitoring
-  - Completely independent service
-  - Runs on separate port (3001)
+  - Two independent processes in one folder
 
 ## Tech Stack
 
@@ -132,7 +135,7 @@ cp .env.example .env.local
 
 ## 🏃 Running the Application
 
-The application consists of **two independent services** that must run simultaneously:
+The application consists of **three independent services**:
 
 ### Terminal 1: Frontend + Backend
 ```bash
@@ -152,10 +155,26 @@ Starts the gateway service on **http://localhost:3001**
 - iMessage sending via AppleScript
 - Messages.app integration
 
+### Terminal 3: Queue Processor (Auto-processing)
+```bash
+cd gateway
+yarn processor
+```
+Starts the automated queue processor
+- Processes queue every minute
+- Respects rate limiting configuration
+- Shows processing logs in real-time
+
 ### ⚠️ Important
-- **Keep both terminals running**
+- **Keep all three terminals running** for full automation
 - **Messages.app must be open** and signed in to iMessage
 - **Test the system** with `./gateway/scripts/test.sh`
+
+### Alternative: Manual Processing
+If you don't want automatic processing, skip Terminal 3 and use the "Process Queue" button in the UI or run:
+```bash
+curl http://localhost:3000/api/queue/process
+```
 
 ## 📖 How to Use
 
@@ -178,15 +197,24 @@ Starts the gateway service on **http://localhost:3001**
 
 ### Step 3: Process the Queue
 
-The queue uses **manual or automated triggering**:
+The queue can be processed in three ways:
 
-#### Option A: Manual Processing (for testing)
+#### Option A: Automated Queue Processor (Recommended)
 ```bash
-# Trigger queue processing
-curl http://localhost:3000/api/queue/process
+# Start the queue processor (Terminal 3)
+cd gateway
+yarn processor
 ```
+- Automatically processes queue every minute
+- Shows real-time logs
+- Respects rate limiting
 
-#### Option B: Automated Processing (recommended)
+#### Option B: UI Button (Manual)
+- Click **"Process Queue"** button in the web interface
+- Good for testing and demos
+- Immediate feedback
+
+#### Option C: System Cron (Background)
 ```bash
 # Set up cron to process every minute
 crontab -e

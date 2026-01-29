@@ -46,3 +46,4 @@ data/
 # Gateway node_modules and build
 gateway/node_modules/
 gateway/dist/
+gateway/.env
